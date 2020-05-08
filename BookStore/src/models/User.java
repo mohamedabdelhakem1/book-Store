@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.Statement;
+
 public class User {
 	private String username;
 	private String email;
@@ -9,12 +11,15 @@ public class User {
 	private String phoneNumber;
 	private boolean role;
 	private ShoppingCart cart;
+	private Statement st;
 
-	public User(String username, String passwrd){
+	public User(String username, String passwrd, Statement st){
 		//todo: login
+		this.st=st;
 		cart = new ShoppingCart();
 	}
-	public User(){
+	public User(Statement st){
+		this.st =st;
 		cart = new ShoppingCart();
 	}
 
