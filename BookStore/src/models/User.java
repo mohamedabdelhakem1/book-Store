@@ -11,16 +11,14 @@ public class User {
 	private String phoneNumber;
 	private boolean role;
 	private ShoppingCart cart;
-	private Statement st;
 
-	public User(String username, String passwrd, Statement st){
-		//todo: login
-		this.st=st;
+
+	public User(){
 		cart = new ShoppingCart();
 	}
-	public User(Statement st){
-		this.st =st;
-		cart = new ShoppingCart();
+
+	public void setRole(boolean role) {
+		this.role = role;
 	}
 
 	public String getUsername() {

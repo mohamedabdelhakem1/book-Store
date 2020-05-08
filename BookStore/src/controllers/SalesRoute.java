@@ -11,7 +11,6 @@ public class SalesRoute {
 	public boolean checkout(String creditCard, Map<Book, Integer> books) {
 		return false;
 	}
-	
 	public double totalSales(int days) {
 		return 0;
 	}
