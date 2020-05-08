@@ -4,7 +4,7 @@ import models.Customer;
 
 public class BookStore {
 	private Customer customer;
-	BookStore(){
+	public BookStore(){
 		
 	}
 	public void signUp(String userName,String password,
