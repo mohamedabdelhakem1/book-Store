@@ -7,7 +7,7 @@ import models.Order;
 
 public class BookRoute {
 	
-	public Book create() {
+	public Book create(Book book) {
 		return null;
 	}
 	public Book update(Book book) {

@@ -4,16 +4,6 @@ public class Order {
 	private int ISBN;
 	private int quantity;
 	
-	Order(int isbn, int quantity) {
-	}
-	
-	public void placeOrder() {
-		
-	}
-	
-	public void confirmOrder() {
-		
-	}
 
 	public int getISBN() {
 		return ISBN;

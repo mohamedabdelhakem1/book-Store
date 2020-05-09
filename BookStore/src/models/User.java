@@ -44,10 +44,6 @@ public class User {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-
-	public boolean isRole() {
-		return role;
-	}
 	
 	public ShoppingCart getCart() {
 		return cart;
@@ -56,10 +52,7 @@ public class User {
 	public boolean isManager() {
 		return role;
 	}
-	
-	public boolean signup(String password) {
-		return false;
-	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}

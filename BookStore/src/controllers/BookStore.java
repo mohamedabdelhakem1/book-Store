@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,22 +16,12 @@ import models.User;
 
 public class BookStore {
 	private User user;
-	private Connection con;
-	private Statement st;
-	private static String url = "jdbc:mysql://localhost:3306/company?useSSL=false";
-    private static String db_user = "root";
-    private static String password = "123456789";
-    private static String query = "SELECT * from employee";
+	private UserRoute userRoute;
+	private BookRoute bookRoute;
     
 	BookStore(){
-		try {
-			con = DriverManager.getConnection(url, db_user, password);
-	        Statement st = con.createStatement();
-	    } catch (SQLException ex) {
-	        Logger lgr = Logger.getLogger(BookStore.class.getName());
-	        lgr.log(Level.SEVERE, ex.getMessage(), ex);
-	    }
-		
+		userRoute = new UserRoute();
+		bookRoute = new BookRoute();
 	}
 	public void signUp(String userName,String password,
 			String email, String fname, String lastname,String shippingAddress,
@@ -41,19 +32,32 @@ public class BookStore {
 		user.setLastName(lastname);
 		user.setPhoneNumber(phoneNum);
 		user.setShippingAddress(shippingAddress);
-		user.signup(password);
-		
+		userRoute.create(user);
 	}
 	public void login(String userName,String password) {
-		user = new User();
+		user = userRoute.auth(userName, password);
 	}
+	
+	public void makeManager(String userName) {
+		if(!user.isManager()) {
+			//Denied
+			return;
+		}
+		userRoute.makeManager(userName);
+	}
+	
+	public void updateUser() {
+		userRoute.update(user);
+	}
+	
+	
 	
 	public boolean addNewBook(Book book) {
 		if(!user.isManager()) {
 			//Denied
 			return false;
 		}
-		//add the book
+		bookRoute.create(book);
 		return true;
 	}
 	
@@ -65,6 +69,7 @@ public class BookStore {
 		//if book exists
 		//negative stock is denied
 		//add the book
+		bookRoute.update(book);
 		return true;
 	}
 	
@@ -73,6 +78,7 @@ public class BookStore {
 			//Denied
 			return false;
 		}
+		bookRoute.placeOrder(book, quantity);
 		return true;
 	}
 	
@@ -81,13 +87,11 @@ public class BookStore {
 			//Denied
 			return false;
 		}
+		bookRoute.confirmOrder(order.getISBN());
 		return true;
 	}
 	
-	public Book findBook(int ISBN) {
-		return null;
-	}
-	public Book findBook(String title) {
-		return null;
+	public List<Book> findBook(Book book) {
+		return bookRoute.getBooks(book);
 	}
 }

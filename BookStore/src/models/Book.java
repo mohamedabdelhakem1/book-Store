@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +15,8 @@ public class Book {
 	private int stockMin;
 	private int stock;
 	
-	Book(int ISBN){
-		//todo: load book from DB
-	}
-	
 	Book(){
-		
+		authors = new ArrayList<String>();
 	}
 	
 	public String getTitle() {
@@ -86,6 +83,6 @@ public class Book {
 		this.stock = stock;
 	}
 	public void addAuther(String name) {
-		
+		authors.add(name);
 	}
 }
