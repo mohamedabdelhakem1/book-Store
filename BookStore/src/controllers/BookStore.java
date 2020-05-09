@@ -1,13 +1,36 @@
 package controllers;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import models.Book;
 import models.Order;
 import models.User;
 
 public class BookStore {
-private User user;
-	public BookStore(){
-
+	private User user;
+	private Connection con;
+	private Statement st;
+	private static String url = "jdbc:mysql://localhost:3306/company?useSSL=false";
+    private static String db_user = "root";
+    private static String password = "123456789";
+    private static String query = "SELECT * from employee";
+    
+	BookStore(){
+		try {
+			con = DriverManager.getConnection(url, db_user, password);
+	        Statement st = con.createStatement();
+	    } catch (SQLException ex) {
+	        Logger lgr = Logger.getLogger(BookStore.class.getName());
+	        lgr.log(Level.SEVERE, ex.getMessage(), ex);
+	    }
+		
 	}
 	public void signUp(String userName,String password,
 			String email, String fname, String lastname,String shippingAddress,
@@ -22,7 +45,7 @@ private User user;
 		
 	}
 	public void login(String userName,String password) {
-		user = new User(userName, password);
+		user = new User();
 	}
 	
 	public boolean addNewBook(Book book) {

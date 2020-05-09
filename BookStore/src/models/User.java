@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.Statement;
+
 public class User {
 	private String username;
 	private String email;
@@ -10,12 +12,13 @@ public class User {
 	private boolean role;
 	private ShoppingCart cart;
 
-	public User(String username, String passwrd){
-		//todo: login
-		cart = new ShoppingCart();
-	}
+
 	public User(){
 		cart = new ShoppingCart();
+	}
+
+	public void setRole(boolean role) {
+		this.role = role;
 	}
 
 	public String getUsername() {
