@@ -12,7 +12,6 @@ public class User {
 	private boolean role;
 	private ShoppingCart cart;
 
-
 	public User(){
 		cart = new ShoppingCart();
 	}

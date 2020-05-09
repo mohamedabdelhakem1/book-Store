@@ -21,7 +21,6 @@ public class BookRoute {
 	}
 	
 	public List<Order> getOrders(List<Integer> ISBNs){
-		//if list empty return all orders
 		return null;
 	}
 	public List<Book> getBooks(Book book){
