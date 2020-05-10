@@ -14,10 +14,15 @@ public class User {
 
 	public User(){
 		cart = new ShoppingCart();
+		role = false;
 	}
 
 	public void setRole(boolean role) {
 		this.role = role;
+	}
+
+	public boolean	getRole() {
+		return role;
 	}
 
 	public String getUsername() {
@@ -43,10 +48,6 @@ public class User {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-
-	public boolean isRole() {
-		return role;
-	}
 	
 	public ShoppingCart getCart() {
 		return cart;
@@ -55,10 +56,7 @@ public class User {
 	public boolean isManager() {
 		return role;
 	}
-	
-	public boolean signup(String password) {
-		return false;
-	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
