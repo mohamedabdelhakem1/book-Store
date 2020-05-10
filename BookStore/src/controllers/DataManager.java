@@ -2,6 +2,7 @@ package controllers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +25,7 @@ public class DataManager {
 			dataManager = new DataManager();
 			try {
 				connection = DriverManager.getConnection(url, user, password);
+				removeExpiredSales();
 			} catch (SQLException e) {
 				Logger lgr = Logger.getLogger(DataManager.class.getName());
 				lgr.log(Level.SEVERE, e.getMessage(), e);
@@ -34,7 +36,15 @@ public class DataManager {
 	public Connection getConnection() {
 		return connection;
 	}
-
+	public static void removeExpiredSales() {
+		String query = "delete FROM sales WHERE sales.timestamp < (now()- INTERVAL 3 MONTH)";
+		try {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	public ResultSet execute(String query) throws SQLException {
 		ResultSet rs = null;
 		Statement statement = connection.createStatement();

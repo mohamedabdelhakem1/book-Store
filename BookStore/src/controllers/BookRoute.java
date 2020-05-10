@@ -143,62 +143,68 @@ public class BookRoute {
 
 	public List<Book> getBooks(Book book) {
 		List<Book> books = new ArrayList<Book>();
-		StringBuilder queryBuilder = new StringBuilder("select * from (book inner join publisher on book.publisher_name = publisher.name) where ");
+		StringBuilder queryBuilder = new StringBuilder(
+				"select * from (book inner join publisher on book.publisher_name = publisher.name) where ");
 		int first = 0;
 		List<Object> paramList = new ArrayList<Object>();
-		if (book.getISBN() != -1) {
-			queryBuilder.append(" isbn = ? ");
-			paramList.add(book.getISBN());
-			first++;
-		}
-		if (book.getTitle() != null) {
-			if (first > 0)
-				queryBuilder.append("and");
-			queryBuilder.append(" title = ? ");
-			paramList.add(book.getTitle());
-			first++;
-		}
-		if (book.getPublicationYear() != null) {
-			if (first > 0)
-				queryBuilder.append("and");
-			queryBuilder.append(" pyear = ? ");
-			paramList.add(book.getPublicationYear());
-			first++;
-		}
-		if (book.getPrice() != -1) {
-			if (first > 0)
-				queryBuilder.append("and");
-			queryBuilder.append(" price = ? ");
-			paramList.add(book.getPrice());
-			first++;
-		}
-		if (book.getCategory() != null) {
-			if (first > 0)
-				queryBuilder.append("and");
-			queryBuilder.append(" category = ? ");
-			paramList.add(book.getCategory());
-			first++;
-		}
-		if (book.getPublisher() != null) {
-			if (first > 0)
-				queryBuilder.append("and");
-			queryBuilder.append(" publisher_name = ? ");
-			paramList.add(book.getPublisher().getName());
-			first++;
-		}
-		if (book.getStockMin() != -1) {
-			if (first > 0)
-				queryBuilder.append("and");
-			queryBuilder.append(" stock_min = ? ");
-			paramList.add(book.getStockMin());
-			first++;
-		}
-		if (book.getStock() != -1) {
-			if (first > 0)
-				queryBuilder.append("and");
-			queryBuilder.append(" stock = ? ");
-			paramList.add(book.getStock());
-			first++;
+		if (book != null) {
+			if (book.getISBN() != -1) {
+				queryBuilder.append(" isbn = ? ");
+				paramList.add(book.getISBN());
+				first++;
+			}
+			if (book.getTitle() != null) {
+				if (first > 0)
+					queryBuilder.append("and");
+				queryBuilder.append(" title = ? ");
+				paramList.add(book.getTitle());
+				first++;
+			}
+			if (book.getPublicationYear() != null) {
+				if (first > 0)
+					queryBuilder.append("and");
+				queryBuilder.append(" pyear = ? ");
+				paramList.add(book.getPublicationYear());
+				first++;
+			}
+			if (book.getPrice() != -1) {
+				if (first > 0)
+					queryBuilder.append("and");
+				queryBuilder.append(" price = ? ");
+				paramList.add(book.getPrice());
+				first++;
+			}
+			if (book.getCategory() != null) {
+				if (first > 0)
+					queryBuilder.append("and");
+				queryBuilder.append(" category = ? ");
+				paramList.add(book.getCategory());
+				first++;
+			}
+			if (book.getPublisher() != null) {
+				if (first > 0)
+					queryBuilder.append("and");
+				queryBuilder.append(" publisher_name = ? ");
+				paramList.add(book.getPublisher().getName());
+				first++;
+			}
+			if (book.getStockMin() != -1) {
+				if (first > 0)
+					queryBuilder.append("and");
+				queryBuilder.append(" stock_min = ? ");
+				paramList.add(book.getStockMin());
+				first++;
+			}
+			if (book.getStock() != -1) {
+				if (first > 0)
+					queryBuilder.append("and");
+				queryBuilder.append(" stock = ? ");
+				paramList.add(book.getStock());
+				first++;
+			}
+		} else {
+			queryBuilder = new StringBuilder(
+					"select * from (book inner join publisher on book.publisher_name = publisher.name)");
 		}
 		try {
 			Connection connection = dataManager.getConnection();
