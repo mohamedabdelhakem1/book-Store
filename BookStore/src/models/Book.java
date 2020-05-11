@@ -18,6 +18,7 @@ public class Book {
 	public Book(){
 		authors = new ArrayList<String>();
 	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -85,5 +86,9 @@ public class Book {
 	}
 	public void addAuther(String name) {
 		authors.add(name);
+	}
+
+	public void removeAuthors() {
+		authors.clear();
 	}
 }
