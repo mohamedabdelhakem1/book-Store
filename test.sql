@@ -4,5 +4,6 @@ use bookstore;
 
 -- update book set book.stock = 5 where book.isbn = 1;
 -- delete from orders;
-select * from (book inner join publisher on book.publisher_name = publisher.name) ;
+-- select * from (book inner join publisher on book.publisher_name = publisher.name) ;
+delete FROM sales WHERE sales.timestamp < (now()- INTERVAL 3 MONTH) ;
 
