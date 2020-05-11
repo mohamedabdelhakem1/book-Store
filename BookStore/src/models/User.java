@@ -12,13 +12,17 @@ public class User {
 	private boolean role;
 	private ShoppingCart cart;
 
-
 	public User(){
 		cart = new ShoppingCart();
+		role = false;
 	}
 
 	public void setRole(boolean role) {
 		this.role = role;
+	}
+
+	public boolean	getRole() {
+		return role;
 	}
 
 	public String getUsername() {

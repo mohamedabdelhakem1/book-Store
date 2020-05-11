@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,10 +36,11 @@ public class BookStore {
 		user.setLastName(lastname);
 		user.setPhoneNumber(phoneNum);
 		user.setShippingAddress(shippingAddress);
-		User created = userRoute.create(user);
+		User created = userRoute.create(user,password);
 		this.user = created;
 //		return true;
 		return user != null;
+		
 	}
 	public boolean login(String userName,String password) {
 		user = userRoute.auth(userName, password);
@@ -57,7 +59,7 @@ public class BookStore {
 	}
 	
 	public void updateUser(String password) {
-		userRoute.update(user);
+		userRoute.update(user, password);
 	}
 	
 	public User getUser() {
@@ -81,7 +83,7 @@ public class BookStore {
 		//if book exists
 		//negative stock is denied
 		//add the book
-		bookRoute.update(book);
+		bookRoute.update(book, book.getISBN());
 		return true;
 	}
 	
@@ -116,6 +118,6 @@ public class BookStore {
 	}
 	
 	public boolean checkout(String eDate, String cardNO) {
-		return salesRoute.checkout(cardNO, user.getCart().getItems());
+		return salesRoute.checkout(cardNO,new Date(eDate),user.getUsername(), user.getCart().getItems()) == "success";
 	}
 }

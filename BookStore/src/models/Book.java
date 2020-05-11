@@ -18,15 +18,13 @@ public class Book {
 	public Book(){
 		authors = new ArrayList<String>();
 	}
-	
-	public void setISBN(int ISBN) {
-		this.ISBN = ISBN;
-	}
-	
+
 	public String getTitle() {
 		return title;
 	}
-
+	public void setISBN(int ISBN) {
+		this.ISBN = ISBN;
+	}
 	public int getISBN() {
 		return ISBN;
 	}
