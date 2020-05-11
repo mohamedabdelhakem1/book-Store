@@ -15,8 +15,12 @@ public class Book {
 	private int stockMin;
 	private int stock;
 	
-	Book(){
+	public Book(){
 		authors = new ArrayList<String>();
+	}
+	
+	public void setISBN(int ISBN) {
+		this.ISBN = ISBN;
 	}
 	
 	public String getTitle() {
@@ -84,5 +88,9 @@ public class Book {
 	}
 	public void addAuther(String name) {
 		authors.add(name);
+	}
+
+	public void removeAuthors() {
+		authors.clear();
 	}
 }
