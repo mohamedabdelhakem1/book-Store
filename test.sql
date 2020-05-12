@@ -9,6 +9,3 @@ use bookstore;
 -- group by garage_id
 -- order by COUNT_OF_SLOTS_IN_THE_GARAGE desc, location asc;
 select * from book;
-select * from users;
-
-select * from orders;

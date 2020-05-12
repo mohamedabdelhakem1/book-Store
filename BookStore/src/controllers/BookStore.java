@@ -118,6 +118,9 @@ public class BookStore {
 	public Book getBook(int ISBN) {
 		Book b = new Book();
 		b.setISBN(ISBN);
+		b.setPrice(-1);
+		b.setStock(-1);
+		b.setStockMin(-1);
 		return bookRoute.getBooks(b).get(0);
 	}
 
