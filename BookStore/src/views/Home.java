@@ -96,7 +96,7 @@ public class Home extends JFrame {
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					BookDetails bd = new BookDetails(engine, b);
+					BookDetails bd = new BookDetails(engine, b ,true);
 					setScrollPane(bd);
 				}
 			});

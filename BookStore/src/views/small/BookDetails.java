@@ -10,7 +10,8 @@ import models.Publisher;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -27,13 +28,14 @@ public class BookDetails extends JPanel {
 	private JTextField textField;
 	private Book book;
 	private BookStore engine;
-
+	private boolean editAdd;
 	/**
 	 * Create the panel.
 	 */
-	public BookDetails(BookStore engine, Book book) {
-		this.book = book;
+	public BookDetails(BookStore engine, Book bk , boolean editAdd_) {
+		this.book = bk;
 		this.engine = engine;
+		this.editAdd = editAdd_;
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -132,29 +134,32 @@ public class BookDetails extends JPanel {
 		btnNewButton.setBounds(350, 252, 138, 40);
 		btnNewButton.addActionListener(new ActionListener() {
 			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(category.getText()!=null||category.getText()!="") {
+				book = new Book();
+				if(!category.getText().isBlank()) {
 					book.setCategory(category.getText());
 				}
-				if(isbn.getText()!=null||isbn.getText()!="") {
+				if(!isbn.getText().isBlank()) {
 					book.setISBN(Integer.valueOf(isbn.getText()));
 				}
-				if(price.getText()!=null||price.getText()!="") {
+				if(!price.getText().isBlank()) {
 					book.setPrice(Double.valueOf(price.getText()));
 				}
-				if(year.getText()!=null||year.getText()!="") {
-					book.setPublicationYear(new Date(year.getText()));
+				if(!year.getText().isBlank()) {
+					Date calendar = new Date(Integer.valueOf(year.getText())-1900, 1, 1);
+					book.setPublicationYear(calendar);
 				}
-				if(publisher.getText()!=null||publisher.getText()!="") {
+				if(!publisher.getText().isBlank()) {
 					Publisher p = new Publisher();
 					p.setName(publisher.getText());
 					book.setPublisher(p);
 				}
-				if(title.getText()!=null||title.getText()!="") {
+				if(!title.getText().isBlank()) {
 					book.setTitle(title.getText());
 				}
-				if(authors.getText()!=null||authors.getText()!="") {
+				if(!authors.getText().isBlank()) {
 					book.removeAuthors();
 					String a = authors.getText();
 					String[] auths = a.split(",");
@@ -165,13 +170,17 @@ public class BookDetails extends JPanel {
 						}
 					}
 				}
-				if(threshold.getText()!=null||threshold.getText()!="") {
+				if(!threshold.getText().isBlank()) {
 					book.setStockMin(Integer.valueOf(threshold.getText()));
 				}
-				if(textField.getText()!=null||textField.getText()!="") {
+				if(!textField.getText().isBlank()) {
 					book.setStock(Integer.valueOf(textField.getText()));
 				}
-				engine.updateBook(book);
+				if(editAdd) {
+					engine.updateBook(book);	
+				}else {
+					engine.addNewBook(book);
+				}
 			}
 		});
 		add(btnNewButton);
@@ -184,6 +193,7 @@ public class BookDetails extends JPanel {
 			publisher.setText(book.getPublisher().getName());
 			threshold.setText(String.valueOf(book.getStockMin()));
 			textField.setText(String.valueOf(book.getStock()));
+			category.setText(book.getCategory());
 			String auth = "";
 			for(String a: book.getAuthors()){
 				auth += a + ", ";

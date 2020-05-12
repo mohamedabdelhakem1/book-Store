@@ -28,14 +28,14 @@ public class BookRoute {
 			statement.setInt(1, book.getISBN());
 			statement.setString(2, book.getTitle());
 			statement.setDate(3, (Date) book.getPublicationYear());
-
 			statement.setDouble(4, book.getPrice());
 			statement.setString(5, book.getCategory());
 
 			statement.setString(6, book.getPublisher().getName());
 			statement.setInt(7, book.getStockMin());
 			statement.setInt(8, book.getStock());
-			statement.executeUpdate();
+		int row =	statement.executeUpdate();
+		System.out.println(row);
 		} catch (SQLException e) {
 			return null;
 		}

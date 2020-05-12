@@ -148,7 +148,7 @@ public class Settings extends JFrame {
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home(engine);
-				BookDetails bd = new BookDetails(engine, engine.getBook(Integer.valueOf(textField.getText())));
+				BookDetails bd = new BookDetails(engine, engine.getBook(Integer.valueOf(textField.getText())) ,true);
 				home.setScrollPane(bd);
 				home.run();
 				close();
@@ -163,7 +163,7 @@ public class Settings extends JFrame {
 		btnAddNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home(engine);
-				BookDetails bd = new BookDetails(engine, null);
+				BookDetails bd = new BookDetails(engine, null,false);
 				home.setScrollPane(bd);
 				home.run();
 				close();
