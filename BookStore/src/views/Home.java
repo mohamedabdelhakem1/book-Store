@@ -135,6 +135,7 @@ public class Home extends JFrame {
 				engine.logout();
 				Login login = new Login(engine);
 				login.run();
+				close();
 			}
 		});
 		contentPane.add(logoutBtn);
@@ -149,6 +150,7 @@ public class Home extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Cart cart = new Cart(engine);
 				cart.run();
+				close();
 			}
 		});
 		contentPane.add(cartBtn);
@@ -158,6 +160,7 @@ public class Home extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Settings settings = new Settings(engine);
 				settings.run();
+				close();
 			}
 		});
 		settingsBtn.setFont(new Font("Poppins", Font.BOLD, 15));
@@ -175,6 +178,7 @@ public class Home extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Search search = new Search(engine);
 				search.run();
+				close();
 			}
 		});
 		contentPane.add(btnSearch);
