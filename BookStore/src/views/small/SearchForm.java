@@ -103,23 +103,24 @@ public class SearchForm extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Book book = new Book();
-				book.setCategory((category.getText()==null||category.getText()=="")?null:category.getText());
-				book.setISBN(Integer.valueOf((isbn.getText()==null||isbn.getText()=="")?null:isbn.getText()));
-				book.setPrice(Double.valueOf((price.getText()==null||price.getText()=="")?null:price.getText()));
-				book.setPublicationYear(new Date((year.getText()==null||year.getText()=="")?null:year.getText()));
+				book.setCategory((category.getText().isEmpty())?null:category.getText());
+				book.setISBN(Integer.valueOf((isbn.getText().isEmpty())?null:isbn.getText()));
+				book.setPrice(Double.valueOf((price.getText().isEmpty())?null:price.getText()));
+				book.setPublicationYear(new Date((year.getText().isEmpty())?null:year.getText()));
 				Publisher p = new Publisher();
-				p.setName((publisher.getText()==null||publisher.getText()=="")?null:publisher.getText());
+				p.setName((publisher.getText().isEmpty())?null:publisher.getText());
 				book.setPublisher(p);
-				book.setTitle((title.getText()==null||title.getText()=="")?null:title.getText());
-				String a = authors.getText();
-				String[] auths = a.split(",");
-				for(String auth: auths) {
-					auth.trim();
-					if(auth.length() > 0) {
-						book.addAuther(auth);
+				book.setTitle((title.getText().isEmpty())?null:title.getText());
+				if(!authors.getText().isEmpty()) {
+					String a = authors.getText();
+					String[] auths = a.split(",");
+					for(String auth: auths) {
+						auth.trim();
+						if(auth.length() > 0) {
+							book.addAuther(auth);
+						}
 					}
 				}
-				
 				Home home = new Home(engine);
 				home.setBooks(engine.findBook(book));
 			}

@@ -62,8 +62,8 @@ public class Home extends JFrame {
 	
 	public void setBooks(List<Book> books) {
 		if(books == null) {
-			return;
-//			books = engine.findBook(null);
+//			return;
+			books = engine.findBook(null);
 		}
 		booksPanel.removeAll();
 		for(Book b:books) {
