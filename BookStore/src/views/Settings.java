@@ -147,16 +147,11 @@ public class Settings extends JFrame {
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame newFrame = new JFrame();
-				newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				newFrame.setBounds(100, 100, 650, 500);
-				JPanel cPane = new JPanel();
-				cPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-				newFrame.setContentPane(cPane);
-				cPane.setLayout(null);
+				Home home = new Home(engine);
 				BookDetails bd = new BookDetails(engine, engine.getBook(Integer.valueOf(textField.getText())));
-				cPane.add(bd);
-				newFrame.setVisible(true);
+				home.setScrollPane(bd);
+				home.run();
+				close();
 			}
 		});
 		btnEdit.setFont(new Font("Poppins", Font.PLAIN, 15));
@@ -167,17 +162,11 @@ public class Settings extends JFrame {
 		JButton btnAddNew = new JButton("Add New");
 		btnAddNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame newFrame = new JFrame();
-				newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				newFrame.setBounds(100, 100, 650, 500);
-				JPanel cPane = new JPanel();
-				cPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-				newFrame.setContentPane(cPane);
-				cPane.setLayout(null);
+				Home home = new Home(engine);
 				BookDetails bd = new BookDetails(engine, null);
-				cPane.add(bd);
-				newFrame.setContentPane(bd);
-				newFrame.setVisible(true);
+				home.setScrollPane(bd);
+				home.run();
+				close();
 			}
 		});
 		btnAddNew.setFont(new Font("Poppins", Font.PLAIN, 15));
