@@ -118,6 +118,7 @@ public class BookStore {
 	}
 	
 	public boolean checkout(String eDate, String cardNO) {
-		return salesRoute.checkout(cardNO,new Date(eDate),user.getUsername(), user.getCart().getItems()) == "success";
+		String[] strs = eDate.split("-");
+		return salesRoute.checkout(cardNO,new Date( Integer.valueOf(strs[1]),Integer.valueOf(strs[0]),0),user.getUsername(), user.getCart().getItems()).equals("success");
 	}
 }

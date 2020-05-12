@@ -125,7 +125,7 @@ public class SearchForm extends JPanel {
 				}
 				Home home = new Home(engine);
 				home.setBooks(engine.findBook(book));
-				home.run();
+				home.run();	
 			}
 		});
 		add(btnNewButton);

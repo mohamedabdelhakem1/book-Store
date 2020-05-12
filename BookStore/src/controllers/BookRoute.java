@@ -202,7 +202,8 @@ public class BookRoute {
 				paramList.add(book.getStock());
 				first++;
 			}
-		} else {
+		} 
+		if(first == 0) {
 			queryBuilder = new StringBuilder(
 					"select * from (book inner join publisher on book.publisher_name = publisher.name)");
 		}
