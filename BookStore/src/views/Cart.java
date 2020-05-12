@@ -190,6 +190,7 @@ public class Cart extends JFrame {
 		txtCardNumber.setColumns(10);
 		txtCardNumber.setBounds(66, 407, 194, 40);
 		contentPane.add(txtCardNumber);
+		setCart();
 	}
 	public void delete(CartPanel cp) {
 		cartItems.remove(cp);

@@ -99,10 +99,9 @@ public class BookRoute {
 
 	public List<Order> getOrders(List<Integer> ISBNs) {
 		Connection connection = dataManager.getConnection();
-
 		List<Order> orders = new ArrayList<Order>();
-		if (ISBNs.isEmpty()) {
-			String query = "select * from orders where book_isbn in (?)";
+		if (ISBNs == null) {
+			String query = "select * from orders";
 			PreparedStatement statement;
 			try {
 				statement = connection.prepareStatement(query);
@@ -113,6 +112,7 @@ public class BookRoute {
 					order.setISBN(rs.getInt(2));
 					orders.add(order);
 				}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -181,7 +181,7 @@ public class BookRoute {
 				paramList.add(book.getCategory());
 				first++;
 			}
-			if (book.getPublisher() != null) {
+			if (book.getPublisher().getName() != null) {
 				if (first > 0)
 					queryBuilder.append("and");
 				queryBuilder.append(" publisher_name = ? ");
@@ -202,7 +202,8 @@ public class BookRoute {
 				paramList.add(book.getStock());
 				first++;
 			}
-		} else {
+		} 
+		if(first == 0) {
 			queryBuilder = new StringBuilder(
 					"select * from (book inner join publisher on book.publisher_name = publisher.name)");
 		}
@@ -212,8 +213,11 @@ public class BookRoute {
 			int i = 1;
 			for (Object obj : paramList) {
 				preparedStatement.setObject(i, obj);
+				System.out.println(obj.toString());
 				i++;
 			}
+			System.out.println(queryBuilder.toString());
+			
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				Book bk = new Book();

@@ -111,6 +111,8 @@ public class SearchForm extends JPanel {
 				p.setName((publisher.getText().isEmpty())?null:publisher.getText());
 				book.setPublisher(p);
 				book.setTitle((title.getText().isEmpty())?null:title.getText());
+				book.setStock(-1);
+				book.setStockMin(-1);
 				if(!authors.getText().isEmpty()) {
 					String a = authors.getText();
 					String[] auths = a.split(",");
@@ -123,6 +125,7 @@ public class SearchForm extends JPanel {
 				}
 				Home home = new Home(engine);
 				home.setBooks(engine.findBook(book));
+				home.run();	
 			}
 		});
 		add(btnNewButton);
