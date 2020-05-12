@@ -99,10 +99,9 @@ public class BookRoute {
 
 	public List<Order> getOrders(List<Integer> ISBNs) {
 		Connection connection = dataManager.getConnection();
-
 		List<Order> orders = new ArrayList<Order>();
-		if (ISBNs.isEmpty()) {
-			String query = "select * from orders where book_isbn in (?)";
+		if (ISBNs == null) {
+			String query = "select * from orders";
 			PreparedStatement statement;
 			try {
 				statement = connection.prepareStatement(query);
@@ -113,6 +112,7 @@ public class BookRoute {
 					order.setISBN(rs.getInt(2));
 					orders.add(order);
 				}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

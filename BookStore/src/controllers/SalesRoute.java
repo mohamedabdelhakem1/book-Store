@@ -25,10 +25,11 @@ public class SalesRoute {
 	// returns a message whether success or failed with the causes
 	public String checkout(String creditCard, Date expiryDate,String userName ,Map<Book, Integer> books) {
 		Date today = new Date();
+
+		System.out.println(expiryDate);
 		if (expiryDate.before(today)) {
 			return "expired creditCard";
 		}
-
 		Connection connection = dataManager.getConnection();
 		try {
 			connection.setAutoCommit(false);

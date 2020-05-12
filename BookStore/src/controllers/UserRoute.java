@@ -19,7 +19,7 @@ public class UserRoute {
 
 	/* user functions */
 	public User auth(String username, String password) {
-		User user = new User();
+		User user = null;
 		String query = "select * from users where username = ? and password = ?";
 		try {
 			Connection connection = dataManager.getConnection();
@@ -31,6 +31,7 @@ public class UserRoute {
 			ResultSetMetaData mt = rs.getMetaData();
 			int col = mt.getColumnCount();
 			while (rs.next()) {
+				user = new User();
 				for (int i = 1; i <= col; i++) {
 					String value = rs.getString(i);
 					String label = mt.getColumnLabel(i);
@@ -50,9 +51,12 @@ public class UserRoute {
 				}
 			}
 		} catch (SQLException e) {
+			user = null;
 			Logger lgr = Logger.getLogger(UserRoute.class.getName());
 			lgr.log(Level.SEVERE, "Failed to authenticate", e);
+		
 		}
+		
 		return user;
 	}
 
