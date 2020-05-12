@@ -40,7 +40,7 @@ public class DataManager {
 		String query = "delete FROM sales WHERE sales.timestamp < (now()- INTERVAL 3 MONTH)";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.executeQuery();
+			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
