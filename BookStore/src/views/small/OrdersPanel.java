@@ -23,6 +23,7 @@ public class OrdersPanel extends JPanel {
 	private JTextField txtIsbn;
 	private JTextField txtQuantity;
 	private BookStore engine;
+	private JPanel panel;
 
 	/**
 	 * Create the panel.
@@ -48,14 +49,7 @@ public class OrdersPanel extends JPanel {
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setFont(new Font("Poppins", Font.PLAIN, 15));
 		btnNewButton.setBounds(406, 11, 150, 40);
-		btnNewButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Book book = engine.getBook(Integer.valueOf(txtIsbn.getText()));
-				engine.placeOrder(book, Integer.valueOf(txtQuantity.getText()));
-			}
-		});
+		
 		add(btnNewButton);
 		
 		txtQuantity = new JTextField();
@@ -70,7 +64,7 @@ public class OrdersPanel extends JPanel {
 		scrollPane.setBounds(20, 70, 540, 300);
 		add(scrollPane);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		scrollPane.setViewportView(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
@@ -94,15 +88,24 @@ public class OrdersPanel extends JPanel {
 		lblConfirm.setFont(new Font("Poppins", Font.BOLD, 15));
 		lblConfirm.setBackground(Color.WHITE);
 		panel_1.add(lblConfirm);
-		orders(panel);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Book book = engine.getBook(Integer.valueOf(txtIsbn.getText()));
+				engine.placeOrder(book, Integer.valueOf(txtQuantity.getText()));
+				orders();
+			}
+		});
+		orders();
 
 	}
 	
-	private void orders(JPanel panel) {
+	public void orders() {
 		List<Order> orders = engine.getOrders();
 		if(orders == null) return;
 		for(Order o: orders) {
-			OrderTile ot = new OrderTile(o, engine);
+			OrderTile ot = new OrderTile(o, engine, this);
 			panel.add(ot);
 		}
 	}

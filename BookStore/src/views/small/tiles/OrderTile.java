@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 
 import controllers.BookStore;
 import models.Order;
+import views.small.OrdersPanel;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +18,13 @@ import javax.swing.JButton;
 public class OrderTile extends JPanel {
 	private Order order;
 	private BookStore engine;
+	private OrdersPanel op;
 
 	/**
 	 * Create the panel.
 	 */
-	public OrderTile(Order order, BookStore engine) {
+	public OrderTile(Order order, BookStore engine, OrdersPanel ordersPanel) {
+		this.op = ordersPanel;
 		this.engine = engine;
 		setBackground(Color.WHITE);
 		this.order = order;
@@ -44,7 +48,7 @@ public class OrderTile extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				engine.confirmOrder(order);
-				
+				op.orders();
 			}
 		});
 		add(btnConfirmOrder);
