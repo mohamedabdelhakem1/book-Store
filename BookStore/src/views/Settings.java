@@ -245,6 +245,7 @@ public class Settings extends JFrame {
 				engine.logout();
 				Login login = new Login(engine);
 				login.run();
+				close();
 			}
 		});
 		contentPane.add(logoutBtn);
@@ -259,6 +260,7 @@ public class Settings extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Cart cart = new Cart(engine);
 				cart.run();
+				close();
 			}
 		});
 		contentPane.add(cartBtn);
@@ -273,6 +275,7 @@ public class Settings extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home(engine);
 				home.run();
+				close();
 			}
 		});
 		contentPane.add(btnHome);
@@ -287,6 +290,7 @@ public class Settings extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Search search = new Search(engine);
 				search.run();
+				close();
 			}
 		});
 		contentPane.add(btnSearch);
