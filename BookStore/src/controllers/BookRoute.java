@@ -181,7 +181,7 @@ public class BookRoute {
 				paramList.add(book.getCategory());
 				first++;
 			}
-			if (book.getPublisher() != null) {
+			if (book.getPublisher().getName() != null) {
 				if (first > 0)
 					queryBuilder.append("and");
 				queryBuilder.append(" publisher_name = ? ");
@@ -212,8 +212,11 @@ public class BookRoute {
 			int i = 1;
 			for (Object obj : paramList) {
 				preparedStatement.setObject(i, obj);
+				System.out.println(obj.toString());
 				i++;
 			}
+			System.out.println(queryBuilder.toString());
+			
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				Book bk = new Book();
