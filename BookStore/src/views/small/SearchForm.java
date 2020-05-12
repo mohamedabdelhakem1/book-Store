@@ -104,8 +104,8 @@ public class SearchForm extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Book book = new Book();
 				book.setCategory((category.getText().isEmpty())?null:category.getText());
-				book.setISBN(Integer.valueOf((isbn.getText().isEmpty())?null:isbn.getText()));
-				book.setPrice(Double.valueOf((price.getText().isEmpty())?null:price.getText()));
+				book.setISBN(Integer.valueOf((isbn.getText().isEmpty())?"-1":isbn.getText()));
+				book.setPrice(Double.valueOf((price.getText().isEmpty())?"-1":price.getText()));
 				book.setPublicationYear(new Date((year.getText().isEmpty())?null:year.getText()));
 				Publisher p = new Publisher();
 				p.setName((publisher.getText().isEmpty())?null:publisher.getText());
