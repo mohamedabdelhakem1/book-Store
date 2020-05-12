@@ -4,6 +4,7 @@ use bookstore;
 
 -- update book set book.stock = 5 where book.isbn = 1;
 -- delete from orders;
--- select * from (book inner join publisher on book.publisher_name = publisher.name) ;
-delete FROM sales WHERE sales.timestamp < (now()- INTERVAL 3 MONTH) ;
 
+-- select garages.LOCATION , count(garage_id) as COUNT_OF_SLOTS_IN_THE_GARAGE  from (garages left outer join garage_slots on garages.id = garage_slots.garage_id)
+-- group by garage_id
+-- order by COUNT_OF_SLOTS_IN_THE_GARAGE desc, location asc;
