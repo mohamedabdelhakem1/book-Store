@@ -97,12 +97,15 @@ public class Home extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					BookDetails bd = new BookDetails(engine, b);
-					scrollPane.setViewportView(bd);
+					setScrollPane(bd);
 				}
 			});
 			booksPanel.add(bp);
 		}
 
+	}
+	public void setScrollPane(BookDetails bd) {
+		scrollPane.setViewportView(bd);
 	}
 
 	/**
