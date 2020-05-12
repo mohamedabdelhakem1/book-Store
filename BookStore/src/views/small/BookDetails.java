@@ -41,7 +41,7 @@ public class BookDetails extends JPanel {
 		title.setEnabled(engine.getUser().isManager());
 		title.setFont(new Font("Poppins", Font.PLAIN, 15));
 		
-		title.setBounds(20, 20, 420, 40);
+		title.setBounds(20, 20, 343, 40);
 		add(title);
 		title.setColumns(10);
 		
@@ -49,14 +49,14 @@ public class BookDetails extends JPanel {
 		isbn.setFont(new Font("Poppins", Font.PLAIN, 15));
 		isbn.setEnabled(engine.getUser().isManager());
 		isbn.setColumns(10);
-		isbn.setBounds(460, 20, 100, 40);
+		isbn.setBounds(373, 20, 115, 40);
 		add(isbn);
 		
 		authors = new JTextField();
 		authors.setFont(new Font("Poppins", Font.PLAIN, 15));
 		authors.setEnabled(engine.getUser().isManager());
 		authors.setColumns(10);
-		authors.setBounds(140, 79, 420, 40);
+		authors.setBounds(140, 79, 348, 40);
 		add(authors);
 		
 		JLabel lblAuthors = new JLabel("Authors:");
@@ -69,28 +69,28 @@ public class BookDetails extends JPanel {
 		year.setFont(new Font("Poppins", Font.PLAIN, 15));
 		year.setEnabled(engine.getUser().isManager());
 		year.setColumns(10);
-		year.setBounds(20, 201, 166, 40);
+		year.setBounds(20, 201, 138, 40);
 		add(year);
 		
 		price = new JTextField();
 		price.setFont(new Font("Poppins", Font.PLAIN, 15));
 		price.setEnabled(engine.getUser().isManager());
 		price.setColumns(10);
-		price.setBounds(207, 201, 166, 40);
+		price.setBounds(184, 201, 138, 40);
 		add(price);
 		
 		category = new JTextField();
 		category.setFont(new Font("Poppins", Font.PLAIN, 15));
 		category.setEnabled(engine.getUser().isManager());
 		category.setColumns(10);
-		category.setBounds(394, 201, 166, 40);
+		category.setBounds(350, 201, 138, 40);
 		add(category);
 		
 		publisher = new JTextField();
 		publisher.setFont(new Font("Poppins", Font.PLAIN, 15));
 		publisher.setEnabled(engine.getUser().isManager());
 		publisher.setColumns(10);
-		publisher.setBounds(140, 140, 420, 40);
+		publisher.setBounds(140, 140, 348, 40);
 		add(publisher);
 		
 		JLabel lblPublisher = new JLabel("Publisher:");
@@ -103,7 +103,7 @@ public class BookDetails extends JPanel {
 		threshold.setFont(new Font("Poppins", Font.PLAIN, 15));
 		threshold.setEnabled(engine.getUser().isManager());
 		threshold.setColumns(10);
-		threshold.setBounds(140, 252, 46, 40);
+		threshold.setBounds(112, 252, 46, 40);
 		add(threshold);
 		
 		JLabel lblThreshold = new JLabel("Threshold:");
@@ -116,20 +116,20 @@ public class BookDetails extends JPanel {
 		textField.setFont(new Font("Poppins", Font.PLAIN, 15));
 		textField.setEnabled(engine.getUser().isManager());
 		textField.setColumns(10);
-		textField.setBounds(327, 251, 46, 40);
+		textField.setBounds(276, 252, 46, 40);
 		add(textField);
 		
 		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Poppins", Font.BOLD, 15));
 		lblStock.setBackground(Color.WHITE);
-		lblStock.setBounds(207, 251, 100, 40);
+		lblStock.setBounds(184, 252, 100, 40);
 		add(lblStock);
 		
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.setEnabled(engine.getUser().isManager());
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setFont(new Font("Poppins", Font.BOLD, 15));
-		btnNewButton.setBounds(394, 252, 166, 40);
+		btnNewButton.setBounds(350, 252, 138, 40);
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
