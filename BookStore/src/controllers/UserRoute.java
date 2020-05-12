@@ -46,7 +46,9 @@ public class UserRoute {
 					} else if (label.equals("phoneNum")) {
 						user.setPhoneNumber(value);
 					} else if (label.equals("role")) {
-						user.setRole(value == "1");
+						user.setRole(value.equals("1"));
+					} else if (label.equals("shipAddress")) {
+						user.setShippingAddress(value);
 					}
 				}
 			}
@@ -54,9 +56,9 @@ public class UserRoute {
 			user = null;
 			Logger lgr = Logger.getLogger(UserRoute.class.getName());
 			lgr.log(Level.SEVERE, "Failed to authenticate", e);
-		
+
 		}
-		
+
 		return user;
 	}
 
@@ -105,7 +107,7 @@ public class UserRoute {
 
 	public User makeManager(String username) {
 
-		Connection connection =  dataManager.getConnection();
+		Connection connection = dataManager.getConnection();
 		String query = "update users set role= true where username =?";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
@@ -115,7 +117,7 @@ public class UserRoute {
 			e.printStackTrace();
 			return null;
 		}
-	
+
 		return null;
 	}
 
