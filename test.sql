@@ -8,3 +8,7 @@ use bookstore;
 -- select garages.LOCATION , count(garage_id) as COUNT_OF_SLOTS_IN_THE_GARAGE  from (garages left outer join garage_slots on garages.id = garage_slots.garage_id)
 -- group by garage_id
 -- order by COUNT_OF_SLOTS_IN_THE_GARAGE desc, location asc;
+select * from book;
+select * from users;
+
+select * from orders;
