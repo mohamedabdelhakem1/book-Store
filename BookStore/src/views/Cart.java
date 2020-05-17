@@ -163,6 +163,7 @@ public class Cart extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(engine.checkout(txtExpDate.getText(), txtCardNumber.getText())) {
 					cartItems.removeAll();
+					engine.getUser().getCart().removeAllCopies();;
 					Home home = new Home(engine);
 					home.setVisible(true);
 					close();

@@ -32,6 +32,7 @@ public class SalesRoute {
 		}
 		Connection connection = dataManager.getConnection();
 		try {
+			
 			connection.setAutoCommit(false);
 			for(Entry<Book, Integer> b : books.entrySet()) {
 				String query = "update book set stock = stock - ? where isbn = ?";
@@ -49,9 +50,11 @@ public class SalesRoute {
 				statement.setInt(4, b.getKey().getISBN());
 				statement.executeUpdate();
 			}
+			System.out.println("done");
 			connection.commit();
 		} catch (Exception e) {
 			try {
+				System.out.println("not enough");
 				connection.rollback();
 				connection.setAutoCommit(true);
 			} catch (SQLException e1) {

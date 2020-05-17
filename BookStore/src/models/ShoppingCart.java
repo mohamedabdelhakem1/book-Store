@@ -27,10 +27,8 @@ public class ShoppingCart {
 		}
 	}
 	
-	public void removeAllCopies(Book book) {
-		if(books.containsKey(book)) {
-			books.remove(book);
-		}
+	public void removeAllCopies() {
+		books.clear();
 	}
 	
 	public int getNumberOfItems() {
